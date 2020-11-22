@@ -8,6 +8,7 @@ dotenv.config() // this config to make the backend read the environment variable
 
 import filesRoutes from './routes/files.js' // for (/api/files) path
 import showRoutes from './routes/show.js' // for (/files) path
+import downloadRoutes from './routes/download.js' // for (/files/download) path
 
 // connecting to MongoDb
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
@@ -17,6 +18,7 @@ mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnified
 // routes
 app.use('/api/files', filesRoutes)
 app.use('/files', showRoutes)
+app.use('/files/download', downloadRoutes)
 
 const PORT = process.env.PORT || 3001
 
