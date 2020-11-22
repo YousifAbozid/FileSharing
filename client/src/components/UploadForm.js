@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import file from "../img/file.svg";
+
 export default function UploadForm() {
+  const fileInput = useRef(null);
+
+  const handleClick = () => {
+    fileInput.current.click();
+  };
+
   return (
     <form>
       <div className="drop-zone">
@@ -19,9 +26,12 @@ export default function UploadForm() {
             alt="File Icone"
           />
         </div>
-        <input type="file" id="fileInput" />
+        <input type="file" id="fileInput" ref={fileInput} />
         <div className="title">
-          Drop your files here or, <span id="browseBtn">browse</span>
+          Drop your files here or,{" "}
+          <span id="browseBtn" onClick={() => handleClick()}>
+            browse
+          </span>
         </div>
       </div>
     </form>
