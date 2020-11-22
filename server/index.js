@@ -1,8 +1,10 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cors from 'cors'
 const app = express() // the actual express app.
 app.use(express.json()) // this middleware to parse all incoming requests objects to JSON.
+app.use(cors()) // this config make access come true to the backend.
 dotenv.config() // this config to make the backend read the environment variables,
 // make sure to define it before using any environment variables in your app.
 
