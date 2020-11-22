@@ -23,4 +23,24 @@ the data you will recieve from this request you should display it in the downloa
 ### step 3
 
 the download button once clicked it should send a get request to this route http://localhost:3001/files/download/:uuid
-where uuid param is the unique id that you recieved previously in step 2, and this make the server download the file immediately.
+where uuid param is the unique id that you recieved previously in step 2, and this make the server download the file immediately, just like the photo below
+
+![image](/server/todo/Screenshot3.png)
+
+### step 4
+
+also you can send the file via email by making post request to this route http://localhost:3001/api/files/send with an object in the request body contain keys of uuid, emailTo and emailFrom just like the photo below
+
+{
+    "uuid": "2617430c-2601-4e9a-9b71-10fb02bd3548",
+    "emailTo": "yousif.abozid@yahoo.com",
+    "emailFrom": "yousifabozid9@gmail.com"
+}
+
+![image](/server/todo/Screenshot4.png)
+
+and you will recieve { "success": "true" } if you never sent this file before, if not and you already send this file you will recieve { "error": "Email already sent" } just like the photo below
+
+![image](/server/todo/Screenshot5.png)
+
+and that's all for now I guess, maybe more things will be added soon, good luck 🤗😊💖
