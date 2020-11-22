@@ -1,9 +1,9 @@
 import "./App.css";
-import { HomeScreen } from "./Screens";
+import { HomeScreen, DownloadScreen } from "./Screens";
 function App() {
   return (
     <>
-      <HomeScreen />
+      <DownloadScreen />
     </>
   );
 }
