@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
-
+import { HomeScreen } from "./Screens";
 function App() {
   return (
-    <div className="App">
-      <h1>File Sharing App</h1>
-    </div>
+    <>
+      <HomeScreen />
+    </>
   );
 }
 
