@@ -2,10 +2,11 @@ import React from "react";
 import UploadForm from "./UploadForm";
 import ProgressContainer from "./ProgressContainer";
 import SharingContainer from "./SharingContainer";
-function UploadContainer() {
+
+function UploadContainer({ showToast }) {
   return (
     <section className="upload-container">
-      <UploadForm />
+      <UploadForm showToast={showToast} />
       <ProgressContainer />
       <SharingContainer />
     </section>
