@@ -50,3 +50,22 @@ export const addFile = (req, res) => {
         console.log(error)
     }
 }
+
+export const sendFile = async (req, res) => {
+    const { uuid, emailTo, emailFrom } = req.body
+    // validate request
+    if (!uuid || !emailTo || !emailFrom) {
+        return res.status(422).send({ error: 'All fields required' })
+    }
+    // get data from database
+    const file = await fileSchema.findOne({ uuid: uuid })
+    if (file.sender) {
+        return res.status(422).send({ error: 'Email already sent' })
+    }
+
+    file.sender = emailFrom
+    file.receiver = emailTo
+    const response = await file.save()
+
+    // send e-mail
+}
