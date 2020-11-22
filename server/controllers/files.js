@@ -2,6 +2,8 @@ import multer from 'multer' // for more info about multer, just check out their 
 import path from 'path' // for using path module, check the docs from here: https://nodejs.org/api/path.html
 import fileSchema from '../models/file.js' // file schema
 import { v4 as uuidv4 } from 'uuid' // this is for generating unique id
+import sendMail from '../services/emailService.js' // to send an email via nodemailer library
+import emailTemplate from '../services/emailTemplate.js'
 
 // use diskStorage to save the files in upload folder in the root of the server
 let storage = multer.diskStorage({
@@ -68,4 +70,16 @@ export const sendFile = async (req, res) => {
     const response = await file.save()
 
     // send e-mail
+    sendMail({
+        from: emailFrom,
+        to: emailTo,
+        subject: 'file sharing',
+        text: `${emailFrom} shared a file with you.`,
+        html: emailTemplate({
+            emailFrom: emailFrom,
+            downloadLink: `${process.env.APP_BASE_URL}/files/${file.uuid}`,
+            size: parseInt(file.size / 1000) + ' KB',
+            expires: '24 hours'
+        })
+    })
 }
